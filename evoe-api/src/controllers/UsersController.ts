@@ -46,7 +46,18 @@ export class UsersController {
 
   async edit(req: Request, res: Response) {
     const { id } = req.params;
-    const { name, username } = req.body;
+    const {
+      name,
+      username,
+      cpf,
+      birthdate,
+      bio,
+      twitter,
+      instagram,
+      facebook,
+      tiktok,
+      website,
+    } = req.body;
     try {
       const user = await usersRepository.findOneBy({ id: id });
 
@@ -56,6 +67,14 @@ export class UsersController {
 
       user.name = name ?? user.name;
       user.username = username ?? user.username;
+      user.cpf = cpf ?? user.cpf;
+      user.birthdate = birthdate ?? user.birthdate;
+      user.bio = bio ?? user.bio;
+      user.twitter = twitter ?? user.twitter;
+      user.instagram = instagram ?? user.instagram;
+      user.facebook = facebook ?? user.facebook;
+      user.tiktok = tiktok ?? user.tiktok;
+      user.website = website ?? user.website;
 
       await usersRepository.save(user);
 
@@ -76,7 +95,19 @@ export class UsersController {
 
       return res.status(200).json({
         users: users.map((user: User) => {
-          return { id: user.id, name: user.name, username: user.username };
+          return {
+            id: user.id,
+            name: user.name,
+            username: user.username,
+            cpf: user.cpf,
+            birthdate: user.birthdate,
+            bio: user.bio,
+            twitter: user.twitter,
+            instagram: user.instagram,
+            facebook: user.facebook,
+            tiktok: user.tiktok,
+            website: user.website,
+          };
         }),
       });
     } catch (error) {
@@ -117,6 +148,14 @@ export class UsersController {
         id: user.id,
         name: user.name,
         username: user.username,
+        cpf: user.cpf,
+        birthdate: user.birthdate,
+        bio: user.bio,
+        twitter: user.twitter,
+        instagram: user.instagram,
+        facebook: user.facebook,
+        tiktok: user.tiktok,
+        website: user.website,
       });
     } catch (error) {
       console.log(error);

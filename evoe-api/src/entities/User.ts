@@ -15,6 +15,30 @@ export class User {
   @Column({ type: "text" })
   password: string;
 
+  @Column({ type: "text", nullable: true })
+  cpf: string;
+
+  @Column({ type: "timestamp", nullable: true })
+  birthdate: Date;
+
+  @Column({ type: "text", nullable: true })
+  bio: string;
+
+  @Column({ type: "text", nullable: true })
+  twitter: string;
+
+  @Column({ type: "text", nullable: true })
+  instagram: string;
+
+  @Column({ type: "text", nullable: true })
+  facebook: string;
+
+  @Column({ type: "text", nullable: true })
+  tiktok: string;
+
+  @Column({ type: "text", nullable: true })
+  website: string;
+
   constructor(name: string, username: string, password: string, id?: string) {
     this.id = id ?? uuid();
     this.name = name;
