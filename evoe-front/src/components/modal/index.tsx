@@ -2,24 +2,39 @@ import { useState } from "react";
 import Button from "../button";
 import styles from "./styles.module.scss";
 import { useForm } from "react-hook-form";
+import { useMutation } from "react-query";
+import { createProfileClient } from "../../api/evoe/client";
+import { toast } from "react-toastify";
 
 interface IModal {
   setVisible: (visible: boolean) => void;
+  refetch: (() => void) | undefined;
 }
 
-export default function Modal({ setVisible }: IModal) {
+export default function Modal({ setVisible, refetch }: IModal) {
   const [passwordError, setPasswordError] = useState(false);
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
+  const { register, handleSubmit } = useForm();
+
+  const notify = () => toast("Usuário criado com sucesso!");
+
+  const createProfileMutation = useMutation(
+    async (data: any) => createProfileClient(data),
+    {
+      onSuccess: () => {
+        notify();
+        if (refetch) {
+          refetch();
+        }
+        setVisible(false);
+      },
+    }
+  );
 
   const onSubmit = (data: any) => {
     if (data.password === data.confirmPassword) {
       setPasswordError(false);
-      console.log(data);
+      createProfileMutation.mutate(data);
     } else {
       setPasswordError(true);
     }
@@ -38,10 +53,16 @@ export default function Modal({ setVisible }: IModal) {
             {...register("email", { required: true })}
           />
           <input
+            placeholder="Insira seu username..."
+            {...register("username", { required: true })}
+          />
+          <input
+            type="password"
             placeholder="Insira sua senha..."
             {...register("password", { required: true })}
           />
           <input
+            type="password"
             placeholder="Repita sua senha..."
             {...register("confirmPassword", { required: true })}
           />

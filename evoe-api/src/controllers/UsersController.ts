@@ -69,7 +69,7 @@ export class UsersController {
       user.name = name ?? user.name;
       user.username = username ?? user.username;
       user.cpf = cpf ?? user.cpf;
-      user.birthdate = birthdate ?? user.birthdate;
+      user.birthdate = new Date(birthdate) ?? user.birthdate;
       user.bio = bio ?? user.bio;
       user.twitter = twitter ?? user.twitter;
       user.instagram = instagram ?? user.instagram;
