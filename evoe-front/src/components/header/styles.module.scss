@@ -1,0 +1,20 @@
+header {
+  font-family: "Inconsolata", monospace;
+  color: #ffffff;
+  box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.04);
+  border: 0.5px solid #cfd0d0;
+  padding: 1.5rem 4rem;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  height: 1.2rem;
+}
+
+.buttons {
+  display: flex;
+  gap: 1rem;
+}
