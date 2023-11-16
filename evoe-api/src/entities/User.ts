@@ -39,6 +39,9 @@ export class User {
   @Column({ type: "text", nullable: true })
   website: string;
 
+  @Column({ type: "text", nullable: true })
+  profile_pic: string;
+
   constructor(name: string, username: string, password: string, id?: string) {
     this.id = id ?? uuid();
     this.name = name;

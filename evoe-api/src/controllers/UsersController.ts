@@ -57,6 +57,7 @@ export class UsersController {
       facebook,
       tiktok,
       website,
+      profile_pic,
     } = req.body;
     try {
       const user = await usersRepository.findOneBy({ id: id });
@@ -75,6 +76,7 @@ export class UsersController {
       user.facebook = facebook ?? user.facebook;
       user.tiktok = tiktok ?? user.tiktok;
       user.website = website ?? user.website;
+      user.profile_pic = profile_pic ?? user.profile_pic;
 
       await usersRepository.save(user);
 
