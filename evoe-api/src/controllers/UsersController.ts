@@ -109,6 +109,7 @@ export class UsersController {
             facebook: user.facebook,
             tiktok: user.tiktok,
             website: user.website,
+            avatar: user.profile_pic,
           };
         }),
       });
@@ -158,6 +159,7 @@ export class UsersController {
         facebook: user.facebook,
         tiktok: user.tiktok,
         website: user.website,
+        avatar: user.profile_pic,
       });
     } catch (error) {
       console.log(error);
